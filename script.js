@@ -1,19 +1,32 @@
-document.querySelectorAll('a[herf^="#"]').forEach(anchor => {
+// Smooth scroll for internal links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
 
-    anchor.addEvetListener('click', function(e){
-        e.preventDefault();
-        document.querySelector(this.getAttribute
-            ('herf')).scrollIntoView({
-                behavior : 'smooth'
-            });
-    });
-    
+    // Ignore empty # links
+    if (targetId === '#') return;
+
+    const targetElement = document.querySelector(targetId);
+
+    if (targetElement) {
+      e.preventDefault();
+
+      targetElement.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
 });
 
+// Navbar background changes when scrolling
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
 
-window.addEventListener('scroll', ()=>{
-    const navbar = document.querySelector('.navbar');
-    window.scrollY > 50 ?
-        navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)':
-        navbar.style.backgroundColor ='rgba(10,10,10,0.95)';
-})
+  if (!navbar) return;
+
+  if (window.scrollY > 50) {
+    navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+  } else {
+    navbar.style.backgroundColor = 'transparent';
+  }
+});
