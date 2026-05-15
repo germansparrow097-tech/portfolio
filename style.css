@@ -294,3 +294,14 @@ footer{
 
 
 
+.mymark {
+
+
+    margin-top: 2rem;
+    opacity: 0.5;
+    color: rgb(240, 240, 9);
+    
+}
+.mymark span{
+    color: var(--accent);
+}
